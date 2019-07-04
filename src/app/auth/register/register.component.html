@@ -1,0 +1,65 @@
+<div class="login-register" fxLayout="row" fxLayoutAlign="space-around center">
+  <div fxLayout="row" fxFlex="30%" fxFlex.lt-md="60%" fxFlex.lt-sm="100%" fxLayoutAlign="space-around center"
+    fxFlexAlign="center">
+    <mat-card class="login-register-box">
+      <mat-card-content>
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+          <div fxLayout="column" fxLayoutWrap="wrap">
+            <div fxLayout="column" fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
+              <mat-form-field>
+                <input matInput placeholder="First Name" type="text" [formControl]="registerForm.controls['firstname']">
+              </mat-form-field>
+              <small *ngIf="registerForm.controls['firstname'].hasError('required') && registerForm.controls['firstname'].touched"
+                class="text-danger support-text">You must provide your First Name.</small>
+            </div>
+            <div fxLayout="column" fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
+              <mat-form-field>
+                <input matInput placeholder="Last Name" type="text" [formControl]="registerForm.controls['lastname']">
+              </mat-form-field>
+              <small *ngIf="registerForm.controls['lastname'].hasError('required') && registerForm.controls['lastname'].touched"
+                class="text-danger support-text">You must provide your Last Name.</small>
+            </div>
+            <div fxLayout="column" fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
+              <mat-form-field>
+                <input matInput placeholder="Email" [formControl]="registerForm.controls['email']">
+              </mat-form-field>
+              <small
+                *ngIf="registerForm.controls['email'].hasError('required') && registerForm.controls['email'].touched"
+                class="text-danger support-text">Email is required.</small>
+              <small *ngIf="registerForm.controls['email'].errors?.email && registerForm.controls['email'].touched"
+                class="text-danger support-text">You must include a valid email address.</small>
+            </div>
+            <div fxLayout="column" fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
+              <mat-form-field>
+                <input matInput type="password" placeholder="Password"
+                  [formControl]="registerForm.controls['password']">
+              </mat-form-field>
+              <small
+                *ngIf="registerForm.controls['password'].hasError('required') && registerForm.controls['password'].touched"
+                class="text-danger support-text">Password is required.</small>
+            </div>
+            <div fxLayout="column" fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
+              <mat-form-field>
+                <input matInput placeholder="Confirm Password" [formControl]="registerForm.controls['confirm_password']"
+                  type="password">
+              </mat-form-field>
+              <small
+                *ngIf="registerForm.controls['confirm_password'].hasError('required') && registerForm.controls['confirm_password'].touched"
+                class="text-danger support-text">You must include confirm password.</small>
+              <small *ngIf="registerForm.controls['confirm_password'].errors?.equalTo"
+                class="text-danger support-text">Passwords do not match.</small>
+            </div>
+            <div fxFlex.gt-sm="100" fxFlex.gt-xs="100">
+              <button mat-raised-button color="primary" class="btn-block m-t-20 m-b-20" type="submit"
+                [disabled]="!registerForm.valid">Register</button>
+            </div>
+            <div fxFlex.gt-sm="50" fxFlex.gt-xs="50" class="text-right m-t-15">
+              <span>Already have an account?</span>
+              <a [routerLink]="['/auth/login']" class="link"> Login</a>
+            </div>
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
